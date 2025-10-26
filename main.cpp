@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 using namespace std::chrono;
 
@@ -153,10 +154,11 @@ int main() {
 
 
     // displays
-    cout << vectorRead.count() << " " << listRead.count() << " " << setRead.count() << endl;
-    cout << vectorSort.count() << " " << listSort.count() << " " << setSort << endl;
-    cout << vectorInsert.count() << " " << listInsert.count() << " " << setInsert.count() << endl;
-    cout << vectorDelete.count() << " " << listDelete.count() << " " << setDelete.count() << endl;
+    cout << right << setw(width) << "Operation" << setw(width) << "Vector" << setw(width) << "List" << setw(width) << "Set" << endl;
+    cout << right << setw(width) << "Read" << setw(width) << vectorRead.count() << setw(width) << listRead.count() << setw(width) << setRead.count() << endl;
+    cout << right << setw(width) << "Sort" << setw(width) << vectorSort.count() << setw(width) << listSort.count() << setw(width) << setSort << endl;
+    cout << right << setw(width) << "Insert" << setw(width) << vectorInsert.count() << setw(width) << listInsert.count() << setw(width) << setInsert.count() << endl;
+    cout << right << setw(width) << "Delete" << setw(width) << vectorDelete.count() << setw(width) << listDelete.count() << setw(width) << setDelete.count() << endl;
 
     return 0;
 }
