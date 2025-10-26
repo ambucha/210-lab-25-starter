@@ -6,26 +6,37 @@
 #include <vector>
 #include <list>
 #include <set>
+#include <fstream>
+#include <string>
 using namespace std;
+using namespace std::chrono;
+
+// size
+const int SIZE = 20000;
+
+
 
 int main() {
-    // Start timing
+    // gonna start with the reading race
+    set<string> s;
+    list<string> l;
+    vector<string> v;
+    string code;
+
     auto start = high_resolution_clock::now();
+    ifstream fin("codes.txt");
 
-    // Example loop to measure
-    vector<int> numbers;
-    for(int i = 0; i < 1000000; ++i) {
-        numbers.push_back(i);
+    // loop through the file and add each string code to the vector
+    while(getline(fin, code)){
+        v.push_back(code);
     }
-
-    // End timing
+    fin.close();
     auto end = high_resolution_clock::now();
 
-    // Calculate duration
-    auto duration = duration_cast<milliseconds>(end - start);
+    // add the variable for vectorRead time in microseconds
+    auto vectorRead = duration_cast<microseconds>(end - start);
 
-    // Output the duration in milliseconds
-    std::cout << "Time taken: " << duration.count() << " milliseconds\n";
+    
 
     return 0;
 }
