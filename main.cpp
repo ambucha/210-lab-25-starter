@@ -12,8 +12,9 @@
 using namespace std;
 using namespace std::chrono;
 
-// size
-const int SIZE = 20000;
+// sizes plus the column for output sizes
+const int SIZE = 20000; 
+const int width = 12;
 
 
 
@@ -116,10 +117,46 @@ int main() {
     // deleting time
     start = high_resolution_clock::now();
 
+    // delete the middle ish element in the vector
+    v.erase(v.begin() + (v.size() / 2));
+    end = high_resolution_clock::now();
+    auto vectorDelete = duration_cast<microseconds>(end - start);
+
+    // list deleting
+    start = high_resolution_clock::now();
+
+    // go through till middle element then delete
+    it = l.begin();
+    mid = l.size() / 2;
+    for(int i = 0; i < mid; i++) {
+        it++;
+    }
+    l.erase(it);
+    
+    end = high_resolution_clock::now();
+    auto listDelete = duration_cast<microseconds>(end - start);
+
+    //set delete
+    start = high_resolution_clock::now();
+
+    // similar to list delete
+    auto itS = s.begin();
+    mid = s.size() / 2;
+
+    for(int i = 0; i < mid; i++){
+        itS++;
+    }
+    s.erase(itS);
+
+    end = high_resolution_clock::now();
+    auto setDelete = duration_cast<microseconds>(end - start);
+
+
     // displays
     cout << vectorRead.count() << " " << listRead.count() << " " << setRead.count() << endl;
     cout << vectorSort.count() << " " << listSort.count() << " " << setSort << endl;
     cout << vectorInsert.count() << " " << listInsert.count() << " " << setInsert.count() << endl;
+    cout << vectorDelete.count() << " " << listDelete.count() << " " << setDelete.count() << endl;
 
     return 0;
 }
