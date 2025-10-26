@@ -82,12 +82,44 @@ int main() {
     // just set the set sort to -1 since its auto sorted
     int setSort = -1;
 
+    string test = "69lol";
 
+    start = high_resolution_clock::now();
+    // i need to insert it into the middle of the vector
+    v.insert(v.begin() + (v.size() / 2), test);
+    end = high_resolution_clock::now();
+    auto vectorInsert = duration_cast<microseconds>(end - start);
 
+    //list insert time
+    start = high_resolution_clock::now();
+
+    // loop till ur in the middle of the list
+    auto it = l.begin();
+    int mid = l.size() / 2;
+    for(int i = 0; i < mid; i++) {
+        it++;
+    }
+
+    // insert in the mid point
+    l.insert(it, test);
+    end = high_resolution_clock::now();
+    auto listInsert = duration_cast<microseconds>(end - start);
+
+    // set insert now
+    start = high_resolution_clock::now();
+    
+    // just insert the test in it will sort for you, cant put it in the middle
+    s.insert(test);
+    end = high_resolution_clock::now();
+    auto setInsert = duration_cast<microseconds>(end - start);
+
+    // deleting time
+    start = high_resolution_clock::now();
 
     // displays
     cout << vectorRead.count() << " " << listRead.count() << " " << setRead.count() << endl;
     cout << vectorSort.count() << " " << listSort.count() << " " << setSort << endl;
+    cout << vectorInsert.count() << " " << listInsert.count() << " " << setInsert.count() << endl;
 
     return 0;
 }
